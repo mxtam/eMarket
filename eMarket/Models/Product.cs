@@ -19,8 +19,8 @@ namespace eMarket.Models
         [Display(Name = "Вартість")]
         public string? Price { get; set; }
 
-        [Required(ErrorMessage = "Фото товару")]
-        [Display(Name = "Додайте фото")]
+        [Required(ErrorMessage = "Додайте фото")]
+        [Display(Name = "Фото товару")]
         public byte[]? Photo { get; set; }
     }
 }

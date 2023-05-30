@@ -34,7 +34,7 @@ namespace eMarket.Data.Services
 
         public async Task DeleteAsync(int id)
         {
-            Product product = await GetByIdAsync(id);
+            var product = await GetByIdAsync(id);
 
             _context.Products.Remove(product);
             await _context.SaveChangesAsync();  
@@ -46,7 +46,11 @@ namespace eMarket.Data.Services
 
         public async Task UpdateAsync(int id, ProductViewModel vm)
         {
-            Product product = await GetByIdAsync(id);
+            var product = await GetByIdAsync(id);
+
+            product.Name = vm.Name;
+            product.Description = vm.Description;
+            product.Price = vm.Price;
 
             if (vm.Photo != null)
             {
