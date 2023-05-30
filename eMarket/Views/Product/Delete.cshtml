@@ -1,10 +1,10 @@
 ﻿@model eMarket.Models.Product
 @{
-    ViewData["Title"] = "Видалити "+Model.Name;
+    ViewData["Title"] = "Видалити ";
 }
 <div class="container">
     <p>
-        <label>Ви справді хочете видалити @Model.Name ?</label>
+        <label>Ви справді хочете видалити цей товар ?</label>
     </p>
     <p>
         <form asp-action="Delete" asp-controller="Product"> 
