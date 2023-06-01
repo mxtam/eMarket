@@ -17,7 +17,7 @@ namespace eMarket.Models
 
         [Required(ErrorMessage = "Вкажіть вартість товару")]
         [Display(Name = "Вартість")]
-        public string? Price { get; set; }
+        public double Price { get; set; }
 
         [Required(ErrorMessage = "Додайте фото")]
         [Display(Name = "Фото товару")]
