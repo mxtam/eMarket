@@ -1,5 +1,6 @@
 ﻿using eMarket.Data.Services;
 using eMarket.Data.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace eMarket.Controllers
@@ -13,17 +14,19 @@ namespace eMarket.Controllers
             _service = service;
         }
 
-        public async  Task<IActionResult> Index()
+        public async Task<IActionResult> Index()
         {
             return View(await _service.GetAllAsync());
         }
 
+        [Authorize(Roles ="Admin")]
         [HttpGet]
         public IActionResult Create()
         {
             return View();
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async  Task<IActionResult> Create(ProductViewModel vm)
         {
@@ -32,6 +35,7 @@ namespace eMarket.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public async  Task<IActionResult> Update(int id)
         {
@@ -42,6 +46,7 @@ namespace eMarket.Controllers
             return View(product);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> Update(int id,ProductViewModel vm)
         {
@@ -50,12 +55,14 @@ namespace eMarket.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public IActionResult Delete()
         {
             return View();
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
