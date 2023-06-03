@@ -1,0 +1,62 @@
+﻿@model List<Order>
+
+@{
+    ViewData["Title"] = "Замовлення";
+}
+
+<div class="row">
+    <div class="col-md-8 offset-2 bg-light rounded-1">
+        <p>
+            <h4>Список замовлень</h4>
+        </p>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Товари</th>
+                    <th>Всього</th>
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                    {
+                        <th>Користувач</th>
+                    }
+                    <th>Відмінити</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var order in Model)
+                {
+                    <tr>
+                        <td class="align-middle">
+                            <ul style="list-style-type:none">
+                                @foreach (var item in order.OrderItems)
+                                {
+                                    <li>
+                                        <div class="alert alert-info" role="alert">
+                                            <span class="badge bg-success">@item.Amount</span> [@item.Price.ToString("c")] - @item.Product.Name
+                                        </div>
+                                    </li>
+                                }
+                            </ul>
+                        </td>
+                        <td class="align-middle">
+                            @order.OrderItems.Select(m => m.Product.Price * m.Amount).Sum().ToString("c")
+                        </td>
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                    {
+                        <td class="align-middle"> @order.User.Email </td>
+                    }
+                    <td>
+                        <a asp-action="CancelOrder" asp-controller="Order" asp-route-id="@order.Id">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                            </svg>
+                        </a>
+                    </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>

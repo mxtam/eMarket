@@ -1,0 +1,13 @@
+﻿@{
+    ViewData["Title"] = "Відмінити замовлення";
+}
+<div class="container">
+    <p>
+        <h1>Ви справді хочете відмінити замовлення?</h1>
+    </p>
+    <p>
+        <form asp-action="CancelOrder" asp-controller="Order">
+            <input class="btn btn-danger mb-3" type="submit" value="Відмінити" />
+        </form>
+    </p>
+</div>

@@ -1,9 +1,12 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - eMarket</title>
+    <title>@ViewData["Title"] - Metamorphosis</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/eMarket.styles.css" asp-append-version="true" />
@@ -28,7 +31,23 @@
                                 </a>
                              </button>
                         </li>
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            <li class="nav-item">
+                                <button class="nav-item" style="height:100%">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Order" asp-action="Index">
+                                        <span class="box" >
+                                            Замовлення
+                                        </span>
+                                    </a>
+                                </button>
+                            </li>
+                        }
                     </ul>
+                    <ul class="navbar-nav">
+                        @await Component.InvokeAsync("ShopingCartSummary")
+                    </ul>
+
                     <partial name="_LoginPartial" />
                 </div>
             </div>

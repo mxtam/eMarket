@@ -1,0 +1,11 @@
+﻿@page
+@model AccessDeniedModel
+@{
+    ViewData["Title"] = "В доступі відмовлено";
+}
+
+<header>
+    <h1 class="text-danger">@ViewData["Title"]</h1>
+    <p class="text-danger">Ви не маєте доступу до цього ресурсу!</p>
+    <a class="btn btn-dark" asp-action="Index" asp-controller="Product">До каталогу!</a>
+</header>
