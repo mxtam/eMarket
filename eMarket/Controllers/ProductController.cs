@@ -56,13 +56,6 @@ namespace eMarket.Controllers
         }
 
         [Authorize(Roles = "Admin")]
-        [HttpGet]
-        public IActionResult Delete()
-        {
-            return View();
-        }
-
-        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {

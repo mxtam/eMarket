@@ -80,13 +80,9 @@ namespace eMarket.Controllers
             await _orderService.StoreOrderAsync(items,userId,userEmail);
             await _shopingCart.ClearShopingCartAsync();
 
-            return View("OrderCompleted");
+            return RedirectToAction("Index");
         }
 
-        public IActionResult CancelOrder()
-        { 
-            return View();
-        }
 
         [HttpPost]
         public async Task<IActionResult> CancelOrder(int id)
