@@ -12,7 +12,7 @@ using eMarket.Data;
 namespace eMarket.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230627215744_init")]
+    [Migration("20230627223104_init")]
     partial class init
     {
         /// <inheritdoc />
