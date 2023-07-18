@@ -1,9 +1,6 @@
 ﻿using eMarket.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using eMarket.Data.ViewModels;
 
 namespace eMarket.Data.Services
 {
@@ -26,12 +23,18 @@ namespace eMarket.Data.Services
             return orders;
         }
 
-        public async Task StoreOrderAsync(List<ShopingCartItem> items,string userId,string userEmail)
+        public async Task StoreOrderAsync(List<ShopingCartItem> items,string userId,string userEmail, OrderViewModel ordervm)
         {
-            var order = new Order()
+            
+            Order order = new Order()
             {
                 UserId= userId,
-                Email= userEmail
+                Email= userEmail,
+                Phone = ordervm.Phone,
+                Name= ordervm.Name,
+                LastName = ordervm.LastName,
+                Location = ordervm.Location,
+                PostOffice = ordervm.PostOffice
             };
             await _context.Orders.AddAsync(order);
             await _context.SaveChangesAsync();

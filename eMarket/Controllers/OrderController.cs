@@ -18,11 +18,11 @@ namespace eMarket.Controllers
         private readonly IOrderService _orderService;
         private readonly ShopingCart _shopingCart;
 
-        public OrderController(IProductService productService, IOrderService orderService, ShopingCart shopingCart) 
+        public OrderController(IProductService productService, IOrderService orderService, ShopingCart shopingCart)
         {
-            _productService= productService;
-            _orderService= orderService;
-            _shopingCart= shopingCart;
+            _productService = productService;
+            _orderService = orderService;
+            _shopingCart = shopingCart;
         }
 
         public async Task<IActionResult> Index()
@@ -71,13 +71,20 @@ namespace eMarket.Controllers
             return RedirectToAction(nameof(ShopingCart));
         }
 
-        public async Task<IActionResult> CompleteOrder()
+
+        public IActionResult CompleteOrder() {
+
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CompleteOrder(OrderViewModel ordervm)
         {
             var items = _shopingCart.GetShopingCartItems();
             string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             string userEmail = User.FindFirstValue(ClaimTypes.Email);
 
-            await _orderService.StoreOrderAsync(items,userId,userEmail);
+            await _orderService.StoreOrderAsync(items,userId,userEmail,ordervm);
             await _shopingCart.ClearShopingCartAsync();
 
             return RedirectToAction("Index");

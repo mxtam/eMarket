@@ -63,28 +63,9 @@
 
         <div class="text-right">
             <div class="btn-group">
-                    <button type="button" class="btn btn-dark text-white"  data-toggle="modal" data-target="#exampleModalCenter">
-                        Оформити замовлення
-                    </button>
-                <!-- Modal -->
-                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLongTitle">Замовлення</h5>
-                            </div>
-                            <div class="modal-body">
-                                Оформити завмовлення?
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Ні</button>
-                                <a  class="btn btn-dark text-white" asp-action="CompleteOrder">
-                                        Так
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <a class="btn btn-dark text-light" asp-action="CompleteOrder" asp-controller="Order">
+                    Завершити оформлення
+                </a>
                 <span style="padding:5px"></span>
                 <a class="btn btn-dark text-light" asp-controller="Product" asp-action="Index">
                     Повернутися до покупок
