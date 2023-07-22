@@ -11,10 +11,12 @@ namespace eMarket.Models
         public double Price { get; set; }
 
         public int ProductId { get; set; }
+        [Required]
         [ForeignKey("ProductId")]
         public Product? Product { get; set; }
 
         public int OrderId { get; set; }
+        [Required]
         [ForeignKey("OrderId")]
         public Order? Order { get; set; }
     }

@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection"); 
+var connectionString = builder.Configuration.GetConnectionString("azureConnection"); 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
@@ -68,9 +68,9 @@ using (var newScope = app.Services.CreateScope())
     var roles = new[] { "Admin", "User" };
 
     foreach (var role in roles)
-    { 
-        if(!await roleManager.RoleExistsAsync(role))
-                await roleManager.CreateAsync(new IdentityRole(role));
+    {
+        if (!await roleManager.RoleExistsAsync(role))
+            await roleManager.CreateAsync(new IdentityRole(role));
     }
 }
 
@@ -84,12 +84,12 @@ using (var newScope = app.Services.CreateScope())
     if (await userManager.FindByEmailAsync(email) == null)
     {
         var user = new IdentityUser();
-        user.Email = email; 
+        user.Email = email;
         user.UserName = email;
 
-        await userManager.CreateAsync(user,password);
+        await userManager.CreateAsync(user, password);
 
-        await userManager.AddToRoleAsync(user,"Admin");
+        await userManager.AddToRoleAsync(user, "Admin");
     }
 }
 

@@ -8,8 +8,8 @@ namespace eMarket.Models
     {
         public int Id { get; set; }
 
-        [Required(ErrorMessage ="Введіть ім'я отримувача")]
-        [Display(Name="Ім'я")]
+        [Required(ErrorMessage = "Введіть ім'я отримувача")]
+        [Display(Name = "Ім'я")]
         public string Name { get; set; }
 
 
@@ -19,7 +19,7 @@ namespace eMarket.Models
 
         [Required(ErrorMessage = "Введіть номер телефону отримувача")]
         [Display(Name = "Номер телефону")]
-        [RegularExpression(@"^(0\d{9})$",ErrorMessage ="Невірний формат")]
+        [RegularExpression(@"^(0\d{9})$", ErrorMessage = "Невірний формат")]
         public string Phone { get; set; }
 
         [Required(ErrorMessage = "Введіть населений пункт")]
@@ -32,13 +32,15 @@ namespace eMarket.Models
 
 
 
-        public string? Email { get; set; } 
+        public string? Email { get; set; }
 
         public string? UserId { get; set; }
+
+        [Required]
         [ForeignKey(nameof(UserId))]
         public IdentityUser? User { get; set; }
 
-
+        [Required]
         public List<OrderItem>? OrderItems { get; set; }
     }
 }
